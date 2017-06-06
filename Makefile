@@ -5,7 +5,7 @@ BUILDTAGS=
 # Use the 0.0.0 tag for testing, it shouldn't clobber any release builds
 APP?=myapp
 CHARTS?=mycharts
-USERSPACE?=k8s-community
+USERSPACE?=explosivebit
 RELEASE?=0.1.0
 PROJECT?=github.com/${USERSPACE}/${APP}
 HELM_REPO?=https://${USERSPACE}.github.io/${CHARTS}
@@ -28,9 +28,9 @@ ifndef COMMIT
 	COMMIT := git-$(shell git rev-parse --short HEAD)
 endif
 
-vendor: clean
-	go get -u github.com/Masterminds/glide \
-	&& glide install
+#vendor: clean
+#	go get -u github.com/Masterminds/glide \
+#	&& glide install
 
 build: vendor
 	CGO_ENABLED=0 GOOS=${GOOS} go build -a -installsuffix cgo \
